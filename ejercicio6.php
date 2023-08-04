@@ -1,0 +1,4 @@
+<?php
+/*Ejercicio 1: 
+
+*/
