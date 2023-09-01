@@ -151,6 +151,148 @@ where e.coches_id = 3;
 
 -- ================================================================================
 -- Ejercicio 19 : Obtener los vendedores con 2 o mas clientes
+select	v.nombre ,count(v.id) 
+from vendedores v 
+inner join clientes c on c.vendedor_id = v.id
+group by v.nombre , c.vendedor_id 
+having count(v.id) >1;
+
+-- ================================================================================
+-- Ejercicio 20 : Seleccionar el grupo en el que trabaja el vendedor con mayor salario
+-- y mostrar el nombre del grupo
+select  g.ciudad 
+		,g.nombre 
+		,v.nombre
+		,v.sueldo 
+from grupos g 
+inner join vendedores v on v.grupo_id = g.id 
+order by v.sueldo desc 
+limit 1;
+
+-- ================================================================================
+-- Ejercicio 21 : Obtener los nombresy ciudades de los clientes con encargos de 3 unidades en adelante
+-- Primera forma de script
+select 
+	c.nombre 
+	,c.ciudad 
+from clientes c
+inner join encargos e on e.cliente_id = c.id 
+where e.cantidad >=3; 
+
+-- Segunda forma de script
+select nombre, ciudad from clientes c where id in 
+(select cliente_id from encargos e where cantidad >=3);
+
+-- ================================================================================
+-- Ejercicio 22 : Obtener un listado de clientes mostrando el ID de cliente y nombre y mostrar el numero de vendedor y su nombre
+select distinct c.id , c.nombre,  v.nombre 
+from clientes c, vendedores v
+where c.vendedor_id = v.id order by c.id ;
+
+-- ================================================================================
+-- Ejercicio 23 : Listar todos los encargos realizados con la marca del coche y el nombre del cliente
+
+select e.id ,c.marca, c2.nombre 
+from encargos e 
+inner join coches c  on c.id = e.coches_id 
+inner join clientes c2 on c2.id  = e.cliente_id; 
+
+-- ================================================================================
+-- Ejercicio 24 : Listar los encargos con el nombre del coche, el nombre del cliente y
+-- la ciudad sea Madrid
+select  e.id  
+		,c.marca 
+		,c2.nombre 
+		,c2.ciudad 
+from encargos e 
+inner join coches c on c.id = e.coches_id 
+inner join clientes c2 on c2.id = e.cliente_id 
+where c2.ciudad = 'Barcelona';
+
+-- ================================================================================
+-- Ejercicio 25 : Listar los nombres de los clientes con el importe de sus encargos acumulados
+select c.nombre
+		,sum(c2.precio*e.cantidad) as importe 
+from clientes c 
+inner join encargos e on e.cliente_id =c.id  
+inner join coches c2 on c2.id =e.coches_id 
+group by c.nombre
+order by 2;
+
+-- ================================================================================
+-- Ejercicio 26 : Sacar los vendedores que tienen jefe y sacar el nombre del jefe
+
+select concat(v.nombre, ' ',v.apellidos) as vendedor, concat(v2.nombre, ' ',v2.apellidos) as jefe  
+from vendedores v
+inner join vendedores v2 on v.jefe = v2.id ;
+
+-- ================================================================================
+-- Ejercicio 27 : Visualizar nombres de los clientes y la tidad de encargos realizados
+-- incluyendo los que no hayanrealizado encargos
+
+select 	c.nombre 
+		,count (e.id ) as total 
+from clientes c 
+left join encargos e on e.cliente_id = c.id
+group by 1;
+
+-- ================================================================================
+-- Ejercicio 28 : Mostrartodos los vendedores tengan o no clientes y mostrar el numero de
+-- cliente
+select 	v.nombre
+		,v.apellidos 
+		, count(c.id) as total
+from vendedores v
+left join clientes c on C.vendedor_id = V.id 
+group by v.id, v.nombre;
+
+-- ================================================================================
+-- Ejercicio 29 : Crear una vista llamada vendedores A que incluira todos los vendedores
+-- del grupo que le llamen Vendedores A
+
+create view vendedoresA as
+select * from vendedores v where grupo_id in  
+	(select id from grupos g where nombre='Vendedores A');
+
+-- ================================================================================
+-- Ejercicio 30 : Mostrar los datos del vendedor con mas antiguedad en el consesionario
+
+select * from vendedores v order by fecha asc limit 1 ;
+
+-- ================================================================================
+-- Ejercicio 30 plus : Obtener los coches con mas unidades vendidas
+
+select * from coches c where id in 
+		( select e.coches_id from encargos e where e.cantidad in 
+			(select max(cantidad) from encargos e2));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
