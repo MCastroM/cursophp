@@ -1,15 +1,21 @@
-<?php require_once 'includes/helpers.php'?>;
+<?php require_once 'includes/helpers.php'?>
 
 <!-- BARRA LATERAL-->
 <aside id="sidebar">
+    <!--Vista para mostrar conexión exitosa-->
+    <?php if(isset($_SESSION['usuario'])): ?>
+        <div id="usuario-logeado" class="bloque">
+            <h3>Bienvenido, <?=$_SESSION['usuario']['nombre'].' '.$_SESSION['usuario']['apellido'];?></h3>
+        </div>    
+    <?php endif; ?>
     <div id="login" class="bloque">
         <h3>Identificate</h3>
         <form action="login.php" method="POST">
             <label for="email">Email</label>
             <input type="email" name="email" />
 
-            <label for="email">Email</label>
-            <input type="email" name="email" />
+            <label for="pasword">Contraseña</label>
+            <input type="password" name="password" />
 
             <input type="submit" value="Entrar" />
         </form>

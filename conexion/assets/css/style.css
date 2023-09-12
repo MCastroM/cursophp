@@ -198,8 +198,8 @@ input[type="submit"],
 /*PRINCIPAL*/
 #principal{
     float: left;
-    width: 64%;
-    min-height: 750px;
+    width: 65%;
+    min-height: 562px;
     background:white;
     border-radius: 5px;
     box-shadow: 0px 0px 5px #ccc;

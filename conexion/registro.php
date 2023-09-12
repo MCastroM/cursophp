@@ -8,7 +8,7 @@ if(isset($_POST)){
         //validar si tiene valor las variables con el operador ternario de PHP
         $nombre     = isset($_POST['nombre']) ? $_POST['nombre'] : false;
         $apellidos  = isset($_POST['apellidos']) ? $_POST['apellidos'] : false;
-        $email      = isset($_POST['email']) ? $_POST['email'] : false;
+        $email      = isset($_POST['email']) ?trim($_POST['email']) : false;
         $password   = isset($_POST['password']) ? $_POST['password'] : false;
   
     //Array de errores

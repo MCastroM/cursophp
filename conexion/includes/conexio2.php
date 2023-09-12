@@ -25,7 +25,7 @@ while ($row = pg_fetch_assoc($resultado)) {
 
 }
 /*
-// Insertar datos ne la base y tabla seleccionada
+// Insertar datos en la base y tabla seleccionada
 $sql = "INSERT INTO clientes (vendedor_id,nombre, ciudad, gastado, fecha) values (3,'Graba desde PHP3', 'Santiago',24000, current_date)";
 $insert = pg_query($conexion,$sql);
 
