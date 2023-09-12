@@ -1,0 +1,3 @@
+-- curso de PHP
+
+CREATE TABLE 	usuarios() 
