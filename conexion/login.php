@@ -11,9 +11,6 @@ if(isset($_POST)){
     $sql   = "SELECT * FROM usuarios WHERE email = '$email'";
     $login = pg_query($db, $sql);
 
-    // var_dump(pg_fetch_assoc($login));
-    // die();
-
     if($login && pg_num_rows($login) == 1){
         $usuario = pg_fetch_assoc($login);
 

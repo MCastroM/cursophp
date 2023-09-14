@@ -9,11 +9,39 @@ function mostrarError($errores, $campo){
 }
 
 
-    function borrarErrores(){
+function borrarErrores(){
         $_SESSION['errores'] = null;
         unset($_SESSION['errores']);
         if(isset($_SESSION['completado'])){
             $_SESSION['completado'] = null;
             unset($_SESSION['completado']);
         }
+
+        if(isset($_SESSION['errores_entrada'])){
+            $_SESSION['errores_entrada'] = null;
+            // unset($_SESSION['errores_entrada']);
+        }
+
+}
+
+function conseguirCategorias($conexion){
+    $sql = "SELECT * FROM categorias ORDER BY id ASC;";
+    $categorias = pg_query($conexion, $sql);
+
+    $result = array();   
+    if($categorias && pg_num_rows($categorias) >= 1){
+        $resultado = $categorias;
     }
+    return $resultado;
+}
+
+function conseguirUltimasEntradas($conexion){
+    $sql = "SELECT e.*, c.nombre as categoria FROM entradas e INNER JOIN categorias c ON e.categoria_id = c.id ORDER BY e.id ASC LIMIT 4";
+    $entradas = pg_query($conexion, $sql);
+
+    $resultado = array();
+    if($entradas && pg_num_rows($entradas)>= 1){
+        $resultado = $entradas;
+    }
+    return $entradas;
+}

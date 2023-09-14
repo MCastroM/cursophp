@@ -10,4 +10,7 @@ $db = pg_connect("host=$servidor dbname=$basededatos user=$usuario password=$pas
 pg_query($db, "SET NAMES 'utf8'");
 
 // Iniciar session
-session_start();
+if(!isset($_SESSION)){
+    session_start();
+}
+

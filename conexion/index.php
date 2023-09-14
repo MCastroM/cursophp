@@ -1,45 +1,36 @@
-<?php require_once 'includes/cabecera.php' ?>
-
+<?php require_once 'includes/cabecera.php'?>
 <?php require_once 'includes/lateral.php'?>
 
     <!-- CAJA PRINCIPAL-->
-    <div id="principal">
-        <h1>Ultimas entradas</h1>
+<div id="principal">
+    <h1>Ultimas entradas</h1>
+
+    <?php
+        $entradas = conseguirUltimasEntradas($db);
+        if(!empty($entradas)):
+            while($entrada = pg_fetch_assoc($entradas)):
+    ?>
         <articles id="entrada">
-            <h2>Titulo de mi entrada</h2>
-            <p>
-            Lorem Ipsum Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...No hay nadie que ame el dolor mismo, que lo busque, lo encuentre y lo quiera, 
-            simplemente porque es el dolor
-            </p>
+            <a href="">
+                <h2><?=$entrada['titulo']?></h2>
+                <span class="fecha"><?=$entrada['categoria']. ' | '.$entrada['fecha']?></span>
+                <p>
+                    <?=substr($entrada['descripcion'],0, 180)."..."?>
+                </p>
+            </a>
+            
         </articles>
 
-        <articles id="entrada">
-            <h2>Titulo de mi entrada</h2>
-            <p>
-            Lorem Ipsum Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...No hay nadie que ame el dolor mismo, que lo busque, lo encuentre y lo quiera, 
-            simplemente porque es el dolor
-            </p>
-        </articles>
+    <?php
+            endwhile;
+        endif;
+    ?>
 
-        <articles id="entrada">
-            <h2>Titulo de mi entrada</h2>
-            <p>
-            Lorem Ipsum Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...No hay nadie que ame el dolor mismo, que lo busque, lo encuentre y lo quiera, 
-            simplemente porque es el dolor
-            </p>
-        </articles>
-
-        <articles id="entrada">
-            <h2>Titulo de mi entrada</h2>
-            <p>
-            Lorem Ipsum Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...No hay nadie que ame el dolor mismo, que lo busque, lo encuentre y lo quiera, 
-            simplemente porque es el dolor
-            </p>
-        </articles>
         <div id="ver-todas">
             <a href="">Ver todas las entradas</a>
-        </div>
-    </div> 
+        </div> 
+</div>    
+    
 
 <?php require_once 'includes/pie.php'?>
 
