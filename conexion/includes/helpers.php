@@ -35,8 +35,19 @@ function conseguirCategorias($conexion){
     return $resultado;
 }
 
-function conseguirUltimasEntradas($conexion){
-    $sql = "SELECT e.*, c.nombre as categoria FROM entradas e INNER JOIN categorias c ON e.categoria_id = c.id ORDER BY e.id ASC LIMIT 4";
+function conseguirUltimasEntradas($conexion, $limit = null, $categoria = null){
+    $sql = "SELECT e.*, c.nombre as categoria FROM entradas e INNER JOIN categorias c ON e.categoria_id = c.id";
+
+    if(!empty($categoria)){
+        $sql .= " WHERE e.categoria_id = $categoria";
+    }
+
+    $sql .= " ORDER BY e.id DESC";
+
+    if($limit){
+        $sql.=" LIMIT 4";
+    }
+
     $entradas = pg_query($conexion, $sql);
 
     $resultado = array();
@@ -44,4 +55,15 @@ function conseguirUltimasEntradas($conexion){
         $resultado = $entradas;
     }
     return $entradas;
+}
+
+function conseguirCategoria($conexion, $id){
+    $sql = "SELECT * FROM categorias WHERE id = $id;";
+    $categorias = pg_query($conexion, $sql);
+
+    $result = array();   
+    if($categorias && pg_num_rows($categorias) >= 1){
+        $resultado = pg_fetch_assoc($categorias);
+    }
+    return $resultado;
 }
