@@ -36,14 +36,27 @@ if(isset($_POST)){
 
     //Verifico que no hay errores y grabo en la base de datos
     if(count($errores) == 0){
-        $sql = "INSERT INTO entradas (usuario_id,categoria_id,titulo,descripcion,fecha) VALUES ('$usuario','$categoria','$titulo','$descripcion', current_date)";
+        if(isset($_GET['editar'])){
+            $entrada_id= $_GET['editar'];
+            $usuario_id= $_SESSION['usuario']['id'];
+
+            $sql = "UPDATE entradas SET titulo='$titulo', descripcion='$descripcion', categoria_id=$categoria ".
+                    "WHERE id = $entrada_id and usuario_id=$usuario_id";
+        }else{
+
+            $sql = "INSERT INTO entradas (usuario_id,categoria_id,titulo,descripcion,fecha) VALUES ('$usuario','$categoria','$titulo','$descripcion', current_date)";
+        }
+
         $guardar = pg_query($db,$sql);
         header("Location: index.php");
-// var_dump(pg_last_error($guardar));
-// die();
 
     }else{
         $_SESSION["errores_entrada"] = $errores;
-        header("Location: crear-entradas.php");
+        if(isset($_GET['editar'])){
+            header("Location: editar-entrada.php?id=".$_GET['editar']);
+        }else{
+            header("Location: crear-entradas.php");
+        }
+        
     }
 }
