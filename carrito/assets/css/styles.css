@@ -143,6 +143,7 @@ td{
     float: left;
     margin-top:20px;
     margin-left: 10px;
+    /*border: 1px solid black;*/
 }
 
 #lateral .block_aside{
@@ -150,6 +151,7 @@ td{
     width: 90%;
     margin: 5px auto;
     padding: 10px;
+    /* border: 1px solid red; */
 }
 
 #lateral h3{
