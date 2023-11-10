@@ -35,6 +35,7 @@ class Coche{
 		$this->velocidad--;
 	}
 	
+	// get saca el valor de una propiedad
 	public function getVelocidad(){
 		return $this->velocidad;
 	}
