@@ -41,7 +41,9 @@ td{
 	padding: 2px;
 }
 
-
+.thumb{
+	width: 100px;
+}
 
 
 /*CONTAINER*/
@@ -179,6 +181,11 @@ td{
 }
 
 /*FORMS*/
+
+.form_container{
+	width: 50%;
+}
+
 label,
 input[type="button"],
 input[type="submit"],
@@ -190,6 +197,7 @@ button{
 input[type="text"],
 input[type="password"],
 input[type="email"],
+input[type="number"]
 selec{
 	border: 1px solid #C9C9C9;
 	box-shadow: 0px 0px 2px #ccc inset;
@@ -234,6 +242,16 @@ button, .button{
 	margin-bottom: 20px;
 }
 
+.button-gestion{
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.button-red{
+	background: red;
+	border: 1px solid #cf1717;
+}
+
 label,
 input[type="text"],
 input[type="password"],
@@ -267,22 +285,41 @@ selec{
 }
 
 /*Productos*/
+
+.product a{
+	color: black;
+	text-decoration: none;
+}
+
+.product a:hover{
+	color: #555;
+
+}
+
+
+
 .product{
 	width: 30%;
 	float: left;
 	margin-left: 10px;
 	margin-right: 10px;
+	scroll-margin-bottom: 30px;
 	text-align: center;
 }
 
 .product img{
-	width: 100px;
+	height: 170px;
+	/*width: 100px;¨*/
 	margin-bottom: 10px;
+}
+
+.img_carrito{
+	height: 80px;
 }
 
 .product h2{
 	font-size: 18px;
-	margin-bottom: 10px;
+	margin-bottom: 15px;
 }
 
 
@@ -291,6 +328,49 @@ selec{
 	color: #555;
 	font-weight: bold;
 }
+
+
+#detail-product{
+	width: 100%;
+}
+
+#detail-product .image{
+	display: block;
+	width: 40%;
+	float: left;
+	;
+}
+
+#detail-product img{
+	display: block;
+	width: 100%;
+	float: left;
+}
+
+#detail-product .data{
+	display: block;
+	width: 50%;
+	float: right;
+	margin-right: 40px;
+}
+
+
+#detail-product .button{
+	width: 200px;
+	text-align: center;
+}
+
+#detail-product .description{
+	margin-bottom: 20px;
+}
+
+#detail-product .price{
+	margin-bottom: 10px;
+	font-size: 20px;
+	color: #4444;
+}
+
+
 
 /*FOOTER*/
 #footer{
