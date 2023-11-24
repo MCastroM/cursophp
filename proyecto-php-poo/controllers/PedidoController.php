@@ -124,6 +124,8 @@ class pedidoController{
 			header("Location:".base_url);
 		}
 	}
+
+	
 	
 	
 }

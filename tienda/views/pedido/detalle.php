@@ -1,15 +1,11 @@
-<?php if(isset($_SESSION['pedido']) && $_SESSION['pedido'] == 'complete'): ?>
-	<h1>Pedido se ha confirmado</h1>
-	<p>
-		Tu pedido ha sido guardado con exito, una vez que realices la transferencia
-		bancaria a la cuenta nnnnnnnn-00000-0000 con le coste del pedido, será procesado y enviado
-	</p>
-	<br/>
+<h1>Detalle del pedido</h1>
 
-	<!-- Muestro esto si esta identificado-->
+<?php if(isset($pedido)): ?>
+		<h3>Dirección de envío</h3>
+		Provincia: <?=$pedido->provincia ?> <br/>
+		Ciudad   :	<?= $pedido->localidad ?> <br/>
+		Dirección:	<?= $pedido->direccion ?> <br/>
 
-
-	<?php if(isset($pedido)): ?>
 		<h3>Datos de pedido:</h3>
 		
 			Número de pedido:	<?=$pedido->id?> <br>
@@ -46,9 +42,3 @@
 		</table>
 
 	<?php endif; ?>
-	
-
-<?php elseif (isset($_SESSION['pedido']) && $_SESSION['pedido'] != 'complete'): ?>
-	<h1>Tu pedido no ha sido procesado</h1>
-<?php endif; ?>
-
