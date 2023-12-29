@@ -52,3 +52,11 @@ Route::post('/image/save', [App\Http\Controllers\ImageController::class, 'save']
 Route::get('/image/file/{filename}', [App\Http\Controllers\ImageController::class, 'getImage'])->name('image.file');
 Route::get('/image/{id}', [App\Http\Controllers\ImageController::class, 'detail'])->name('image.detail');
 Route::post('/comment/save', [App\Http\Controllers\CommentController::class, 'save'])->name('comment.save');
+Route::get('/comment/delete/{id}', [App\Http\Controllers\CommentController::class, 'delete'])->name('comment.delete');
+Route::get('/like/{image_id}', [App\Http\Controllers\LikeController::class, 'like'])->name('like.save');
+Route::get('/dislike/{image_id}', [App\Http\Controllers\LikeController::class, 'dislike'])->name('like.dislike');
+Route::get('/likes', [App\Http\Controllers\LikeController::class, 'index'])->name('likes');
+Route::get('/profile/{id}', [App\Http\Controllers\UserController::class, 'profile'])->name('profile');
+Route::get('/image/delete/{id}', [App\Http\Controllers\ImageController::class, 'delete'])->name('image.delete');
+Route::get('/image/editar/{id}', [App\Http\Controllers\ImageController::class, 'edit'])->name('image.edit');
+Route::post('/image/update', [App\Http\Controllers\ImageController::class, 'update'])->name('image.update');

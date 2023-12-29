@@ -74,7 +74,8 @@ form .avatar{
 }
 
 .likes img{
-    width: 20px;
+    width: 15px;
+    display: inline-block;
 }
 
 .pub_image_detail .comments {
@@ -83,7 +84,8 @@ form .avatar{
 
 .number_likes{
     color: gray;
-    font-size: 11px;
+    font-size: 15px;
+
 }
 
 .profile-user{
@@ -91,7 +93,7 @@ form .avatar{
     margin-bottom: 40px;
 }
 
-.profile-user .container-avatar{
+.profile-user .container-avatar{    
     width: 200px;
     height: 200px;
     border-radius: 900px;

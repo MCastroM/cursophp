@@ -15,8 +15,16 @@
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
 
     <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script type="text/javascript" src="js/d3.v3.min.js"></script>
+    <script type="text/javascript" src="js/utilities.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     <link href="{{ asset('css/style.css') }}" rel="stylesheet"> 
+    <script src="{{ asset('js/main.js') }}" ></script>
+
 </head>
 <body>
     <div id="app">
@@ -60,6 +68,9 @@
                                 <a href="{{ route('home') }}" class="nav-link">Inicio</a>
                             </li>
                             <li class="nav-item">
+                                <a href="{{ route('likes') }}" class="nav-link">Favoritas</a>
+                            </li>
+                            <li class="nav-item">
                                 <a href="{{ route('image.create') }}" class="nav-link">Subir Imagen</a>
                             </li>
                             <li>
@@ -73,7 +84,7 @@
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
 <!-- actualizado por curso Laravel--> 
-                                    <a class="dropdown-item" href="">
+                                    <a class="dropdown-item" href="{{ route('profile', ['id'=>Auth::user()->id]) }}">
                                         Mi Perfil
                                     </a>
 
