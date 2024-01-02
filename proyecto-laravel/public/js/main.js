@@ -1,4 +1,4 @@
-url = 'http://proyecto-laravel.local';
+var url = 'http://proyecto-laravel.local';
 window.addEventListener("load", function(){
 	
 	$('.btn-like').css('cursor', 'pointer');
@@ -51,4 +51,9 @@ window.addEventListener("load", function(){
 		});
 	}
 	dislake();
+
+	// BUSCADOR
+	$('#buscador').submit(function(){
+		$(this).attr('action',url+'/gente/'+$('#buscador #search').val());
+	});
 });

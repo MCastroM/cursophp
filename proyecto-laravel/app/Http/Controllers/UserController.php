@@ -13,26 +13,45 @@ class UserController extends Controller {
     public function __construct(){
         $this->middleware('auth');
     }
-    
-        public function config(){
-            return view('user.config');
+
+    public function index($search = null){
+
+        if(!empty($search)){
+            $users = User::where('nick', 'LIKE', '%'.$search.'%')
+                            ->orWhere('name', 'LIKE', '%'.$search.'%')
+                            ->orWhere('surname', 'LIKE', '%'.$search.'%')
+                            ->orderBy('id', 'desc')
+                            ->paginate(5);
+
+
+        }else{
+            $users = User::orderBy('id', 'desc')->paginate(5);
         }
 
-        public function update(Request $request){
+        return view('user.index',[
+            'users' => $users
+        ]);           
+    } 
+    
+    public function config(){
+        return view('user.config');
+    }
+
+    public function update(Request $request){
 
     // conseguir usuario identificado
-            $user       = \Auth::user();
-            $id         = $user->id; 
+        $user       = \Auth::user();
+        $id         = $user->id; 
 
     // Validación de formulario
-            $validate = $this->validate($request, [
+        $validate = $this->validate($request, [
 
-                'name'      => 'required|string|max:255',
-                'surname'   => 'required|string|max:255',
-                'nick'      => 'required|string|max:255|unique:users,nick,' .$id,
-                'email'     => 'required|string|email|max:255|unique:users,email,'.$id
+            'name'      => 'required|string|max:255',
+            'surname'   => 'required|string|max:255',
+            'nick'      => 'required|string|max:255|unique:users,nick,' .$id,
+            'email'     => 'required|string|email|max:255|unique:users,email,'.$id
 
-            ]);
+        ]);
 
     // Recoguer datos del formulario       
             $name       = $request->input('name');
@@ -78,6 +97,7 @@ class UserController extends Controller {
             return view('user.profile', [
                 'user' => $user
             ]);            
+        }
 
-        }       
+              
 }
